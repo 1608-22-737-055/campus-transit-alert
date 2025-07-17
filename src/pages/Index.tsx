@@ -1,12 +1,165 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from "react";
+import { Header } from "@/components/Header";
+import { RouteCard } from "@/components/RouteCard";
+import { AuthModal } from "@/components/AuthModal";
+import { RefreshCw, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+// Mock data for routes
+const mockRoutes = [
+  {
+    id: 1,
+    routeName: "Route A - Main Campus",
+    destination: "Library → Dormitory → Sports Complex",
+    status: "on-time" as const,
+    lastUpdate: "2 mins ago",
+    driver: "John Smith",
+    estimatedTime: "15:30",
+    message: ""
+  },
+  {
+    id: 2,
+    routeName: "Route B - Science Building",
+    destination: "Engineering → Science Labs → Cafeteria",
+    status: "delayed" as const,
+    lastUpdate: "5 mins ago",
+    driver: "Sarah Johnson",
+    estimatedTime: "15:45",
+    message: "Heavy traffic near Science Labs - 10 minute delay expected"
+  },
+  {
+    id: 3,
+    routeName: "Route C - City Center",
+    destination: "Campus → Mall → Train Station",
+    status: "cancelled" as const,
+    lastUpdate: "1 hour ago",
+    driver: "Mike Wilson",
+    estimatedTime: "",
+    message: "Bus breakdown - maintenance team dispatched. Alternative transport arranged."
+  },
+  {
+    id: 4,
+    routeName: "Route D - Residential",
+    destination: "Dorms → Medical Center → Parking Lot",
+    status: "on-time" as const,
+    lastUpdate: "30 secs ago",
+    driver: "Lisa Chen",
+    estimatedTime: "15:25",
+    message: ""
+  }
+];
 
 const Index = () => {
+  const [authModal, setAuthModal] = useState({ isOpen: false, mode: "login" as "login" | "signup" });
+  const [lastRefresh, setLastRefresh] = useState(new Date());
+  const [routes, setRoutes] = useState(mockRoutes);
+
+  const handleRefresh = () => {
+    // Simulate fetching updated data
+    setLastRefresh(new Date());
+    // In a real app, this would fetch from an API
+  };
+
+  const openAuthModal = (mode: "login" | "signup") => {
+    setAuthModal({ isOpen: true, mode });
+  };
+
+  const closeAuthModal = () => {
+    setAuthModal({ ...authModal, isOpen: false });
+  };
+
+  const switchAuthMode = () => {
+    setAuthModal({ 
+      ...authModal, 
+      mode: authModal.mode === "login" ? "signup" : "login" 
+    });
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
+    <div className="min-h-screen bg-background">
+      <Header 
+        onLogin={() => openAuthModal("login")}
+        onSignup={() => openAuthModal("signup")}
+      />
+
+      <main className="container mx-auto px-4 py-8">
+        <div className="max-w-4xl mx-auto">
+          {/* Hero Section */}
+          <div className="text-center mb-8">
+            <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Live Bus Tracking
+            </h1>
+            <p className="text-lg text-muted-foreground mb-6">
+              Real-time updates for all campus transportation routes
+            </p>
+            
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <Button 
+                variant="outline" 
+                onClick={handleRefresh}
+                className="flex items-center gap-2"
+              >
+                <RefreshCw className="h-4 w-4" />
+                Refresh
+              </Button>
+              <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                <Clock className="h-4 w-4" />
+                Last updated: {lastRefresh.toLocaleTimeString()}
+              </div>
+            </div>
+          </div>
+
+          {/* Routes Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {routes.map((route, index) => (
+              <div 
+                key={route.id}
+                style={{ animationDelay: `${index * 100}ms` }}
+                className="animate-fade-in"
+              >
+                <RouteCard {...route} />
+              </div>
+            ))}
+          </div>
+
+          {/* Status Summary */}
+          <div className="mt-12 p-6 bg-card rounded-lg border border-border shadow-soft">
+            <h2 className="text-xl font-semibold mb-4">System Status</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div>
+                <div className="text-2xl font-bold text-status-on-time">2</div>
+                <div className="text-sm text-muted-foreground">On Time</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-status-delayed">1</div>
+                <div className="text-sm text-muted-foreground">Delayed</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-status-cancelled">1</div>
+                <div className="text-sm text-muted-foreground">Cancelled</div>
+              </div>
+              <div>
+                <div className="text-2xl font-bold text-primary">4</div>
+                <div className="text-sm text-muted-foreground">Total Routes</div>
+              </div>
+            </div>
+          </div>
+
+          {/* Emergency Notice */}
+          <div className="mt-6 p-4 bg-gradient-warning rounded-lg text-white">
+            <p className="text-center font-medium">
+              📢 Weather Advisory: Light rain expected. Buses may experience minor delays.
+            </p>
+          </div>
+        </div>
+      </main>
+
+      <AuthModal 
+        isOpen={authModal.isOpen}
+        onClose={closeAuthModal}
+        mode={authModal.mode}
+        onModeSwitch={switchAuthMode}
+      />
     </div>
   );
 };
