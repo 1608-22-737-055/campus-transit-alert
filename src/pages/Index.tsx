@@ -9,8 +9,8 @@ import { Button } from "@/components/ui/button";
 const mockRoutes = [
   {
     id: 1,
-    routeName: "Route A - Main Campus",
-    destination: "Library → Dormitory → Sports Complex",
+    routeName: "Route A - Ameerpet to College",
+    destination: "Ameerpet → SR Nagar → College",
     status: "on-time" as const,
     lastUpdate: "2 mins ago",
     driver: "John Smith",
@@ -19,18 +19,18 @@ const mockRoutes = [
   },
   {
     id: 2,
-    routeName: "Route B - Science Building",
-    destination: "Engineering → Science Labs → Cafeteria",
+    routeName: "Route B - Uppal to College",
+    destination: "Uppal → Boduppal → College",
     status: "delayed" as const,
     lastUpdate: "5 mins ago",
     driver: "Sarah Johnson",
     estimatedTime: "15:45",
-    message: "Heavy traffic near Science Labs - 10 minute delay expected"
+    message: "Heavy traffic near Uppal - 10 minute delay expected"
   },
   {
     id: 3,
-    routeName: "Route C - City Center",
-    destination: "Campus → Mall → Train Station",
+    routeName: "Route C - Secunderabad to College",
+    destination: "Secunderabad → Trimulgherry → College",
     status: "cancelled" as const,
     lastUpdate: "1 hour ago",
     driver: "Mike Wilson",
@@ -39,8 +39,8 @@ const mockRoutes = [
   },
   {
     id: 4,
-    routeName: "Route D - Residential",
-    destination: "Dorms → Medical Center → Parking Lot",
+    routeName: "Route D - Nacharam to College",
+    destination: "Nacharam → Habsiguda → College",
     status: "on-time" as const,
     lastUpdate: "30 secs ago",
     driver: "Lisa Chen",
