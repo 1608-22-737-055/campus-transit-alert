@@ -13,7 +13,7 @@ const mockRoutes = [
     destination: "Ameerpet → SR Nagar → College",
     status: "on-time" as const,
     lastUpdate: "2 mins ago",
-    driver: "John Smith",
+    driver: "Abhiram",
     estimatedTime: "15:30",
     message: ""
   },
@@ -23,7 +23,7 @@ const mockRoutes = [
     destination: "Uppal → Boduppal → College",
     status: "delayed" as const,
     lastUpdate: "5 mins ago",
-    driver: "Sarah Johnson",
+    driver: "Saketh",
     estimatedTime: "15:45",
     message: "Heavy traffic near Uppal - 10 minute delay expected"
   },
@@ -33,7 +33,7 @@ const mockRoutes = [
     destination: "Secunderabad → Trimulgherry → College",
     status: "cancelled" as const,
     lastUpdate: "1 hour ago",
-    driver: "Mike Wilson",
+    driver: "Anudeep",
     estimatedTime: "",
     message: "Bus breakdown - maintenance team dispatched. Alternative transport arranged."
   },
@@ -43,7 +43,7 @@ const mockRoutes = [
     destination: "Nacharam → Habsiguda → College",
     status: "on-time" as const,
     lastUpdate: "30 secs ago",
-    driver: "Lisa Chen",
+    driver: "Mohan",
     estimatedTime: "15:25",
     message: ""
   }
