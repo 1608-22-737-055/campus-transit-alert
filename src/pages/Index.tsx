@@ -10,7 +10,7 @@ const mockRoutes = [
   {
     id: 1,
     routeName: "Route A - Ameerpet to College",
-    destination: "Ameerpet → SR Nagar → College",
+    destination: "Ameerpet → Punjagutta → Irrum Manzil → Khairatabad → Lakdi Ka Pul → Nampally → Osmania Medical College → Malakpet → Chanchalguda → Campus",
     status: "on-time" as const,
     lastUpdate: "2 mins ago",
     driver: "Abhiram",
@@ -20,7 +20,7 @@ const mockRoutes = [
   {
     id: 2,
     routeName: "Route B - Uppal to College",
-    destination: "Uppal → Boduppal → College",
+    destination: "Uppal → Nagole → Supraja Hospital → Kamineni Hospital → LB Nagar → Victoria Memorial → Chitanayapuri → Dilsuknagar → Musarambagh → Campus",
     status: "delayed" as const,
     lastUpdate: "5 mins ago",
     driver: "Saketh",
@@ -30,7 +30,7 @@ const mockRoutes = [
   {
     id: 3,
     routeName: "Route C - Secunderabad to College",
-    destination: "Secunderabad → Trimulgherry → College",
+    destination: "Secunderabad → Gandhi Hospital → Musheerabad → RTC x Roads → Chikkadpally → Narayanguda → Sultan Bazar → Malakpet → Chanchalguda → Campus",
     status: "cancelled" as const,
     lastUpdate: "1 hour ago",
     driver: "Anudeep",
@@ -40,7 +40,7 @@ const mockRoutes = [
   {
     id: 4,
     routeName: "Route D - Nacharam to College",
-    destination: "Nacharam → Habsiguda → College",
+    destination: "Nacharam → Habsiguda → Tarnaka → OU → Ramnagar → DD Colony → Amberpet → Ali Cafe → Musarambagh → Campus",
     status: "on-time" as const,
     lastUpdate: "30 secs ago",
     driver: "Mohan",
