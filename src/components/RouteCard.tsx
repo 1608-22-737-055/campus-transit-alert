@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Clock, MapPin, User } from "lucide-react";
+import { Clock, MapPin, User, Bus } from "lucide-react";
 import { StatusBadge, type BusStatus } from "./StatusBadge";
 import { Card } from "@/components/ui/card";
 import {
@@ -52,6 +52,33 @@ export function RouteCard({
     setSelectedStop(stop);
     setStopETA(calculateETA(stop));
   };
+
+  // Calculate bus position based on status
+  const getBusPosition = () => {
+    const totalStops = stops.length;
+    let position = 0;
+    
+    switch (status) {
+      case "on-time":
+        position = Math.floor(totalStops * 0.3); // 30% through route
+        break;
+      case "delayed":
+        position = Math.floor(totalStops * 0.5); // 50% through route
+        break;
+      case "cancelled":
+        position = 0; // Bus not moving
+        break;
+      case "unknown":
+        position = Math.floor(totalStops * 0.2); // 20% through route
+        break;
+      default:
+        position = 0;
+    }
+    
+    return (position / (totalStops - 1)) * 100; // Convert to percentage
+  };
+
+  const busPositionPercent = getBusPosition();
   return (
     <Card className="p-6 hover:shadow-medium transition-all duration-300 animate-fade-in">
       <div className="flex justify-between items-start mb-4">
@@ -66,6 +93,35 @@ export function RouteCard({
       </div>
 
       <div className="space-y-3">
+        {/* Route Visualization */}
+        <div className="relative bg-muted/30 rounded-lg p-4 mb-4">
+          <div className="text-xs text-muted-foreground mb-2">Current Route Progress</div>
+          {/* Route Line */}
+          <div className="relative h-2 bg-muted rounded-full">
+            <div 
+              className="absolute h-full bg-primary rounded-full transition-all duration-500"
+              style={{ width: `${busPositionPercent}%` }}
+            />
+            {/* Transparent Bus Icon */}
+            <div 
+              className="absolute top-1/2 transform -translate-y-1/2 -translate-x-1/2 transition-all duration-500"
+              style={{ left: `${Math.max(8, Math.min(92, busPositionPercent))}%` }}
+            >
+              <div className="bg-primary/20 backdrop-blur-sm rounded-full p-1 shadow-sm">
+                <Bus className="h-4 w-4 text-primary opacity-80" />
+              </div>
+            </div>
+          </div>
+          {/* Stop markers */}
+          <div className="flex justify-between mt-1">
+            {stops.slice(0, 3).map((stop, index) => (
+              <div key={index} className="text-xs text-muted-foreground">
+                {index === 0 ? stops[0] : index === 1 ? "..." : stops[stops.length - 1]}
+              </div>
+            ))}
+          </div>
+        </div>
+
         {/* Stop Selector */}
         <div className="space-y-2">
           <label className="text-sm font-medium text-foreground">Select Stop:</label>
