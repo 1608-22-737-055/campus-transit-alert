@@ -1,7 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Header } from "@/components/Header";
 import { RouteCard } from "@/components/RouteCard";
-import { AuthModal } from "@/components/AuthModal";
 import { RefreshCw, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -50,7 +49,6 @@ const mockRoutes = [
 ];
 
 const Index = () => {
-  const [authModal, setAuthModal] = useState({ isOpen: false, mode: "login" as "login" | "signup" });
   const [lastRefresh, setLastRefresh] = useState(new Date());
   const [routes, setRoutes] = useState(mockRoutes);
 
@@ -60,27 +58,9 @@ const Index = () => {
     // In a real app, this would fetch from an API
   };
 
-  const openAuthModal = (mode: "login" | "signup") => {
-    setAuthModal({ isOpen: true, mode });
-  };
-
-  const closeAuthModal = () => {
-    setAuthModal({ ...authModal, isOpen: false });
-  };
-
-  const switchAuthMode = () => {
-    setAuthModal({ 
-      ...authModal, 
-      mode: authModal.mode === "login" ? "signup" : "login" 
-    });
-  };
-
   return (
     <div className="min-h-screen bg-background">
-      <Header 
-        onLogin={() => openAuthModal("login")}
-        onSignup={() => openAuthModal("signup")}
-      />
+      <Header />
 
       <main className="container mx-auto px-4 py-8">
         <div className="max-w-4xl mx-auto">
@@ -153,13 +133,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-
-      <AuthModal 
-        isOpen={authModal.isOpen}
-        onClose={closeAuthModal}
-        mode={authModal.mode}
-        onModeSwitch={switchAuthMode}
-      />
     </div>
   );
 };

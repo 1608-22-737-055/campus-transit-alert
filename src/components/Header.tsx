@@ -1,12 +1,9 @@
 import { Bus, LogIn, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
-interface HeaderProps {
-  onLogin: () => void;
-  onSignup: () => void;
-}
-
-export function Header({ onLogin, onSignup }: HeaderProps) {
+export function Header() {
+  const navigate = useNavigate();
   return (
     <header className="bg-card border-b border-border shadow-soft">
       <div className="container mx-auto px-4 py-4">
@@ -22,11 +19,11 @@ export function Header({ onLogin, onSignup }: HeaderProps) {
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="outline" onClick={onLogin} className="flex items-center gap-2">
+            <Button variant="outline" onClick={() => navigate("/login")} className="flex items-center gap-2">
               <LogIn className="h-4 w-4" />
               Login
             </Button>
-            <Button onClick={onSignup} className="flex items-center gap-2">
+            <Button onClick={() => navigate("/signup")} className="flex items-center gap-2">
               <UserPlus className="h-4 w-4" />
               Sign Up
             </Button>
