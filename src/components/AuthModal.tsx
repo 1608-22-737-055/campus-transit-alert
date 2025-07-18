@@ -35,7 +35,7 @@ export function AuthModal({ isOpen, onClose, mode, onModeSwitch }: AuthModalProp
               <Bus className="h-5 w-5 text-white" />
             </div>
             <h2 className="text-xl font-bold">
-              {mode === "login" ? "Welcome Back" : "Join CampusTransit"}
+              {mode === "login" ? "Welcome Back" : "Join Matrusri Bus Tracking"}
             </h2>
           </div>
           <Button variant="ghost" size="icon" onClick={onClose}>

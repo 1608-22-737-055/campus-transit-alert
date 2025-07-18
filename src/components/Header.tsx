@@ -13,7 +13,7 @@ export function Header() {
               <Bus className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-foreground">CampusTransit</h1>
+              <h1 className="text-xl font-bold text-foreground">Matrusri Bus Tracking</h1>
               <p className="text-sm text-muted-foreground">Real-time bus tracking</p>
             </div>
           </div>

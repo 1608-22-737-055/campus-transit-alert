@@ -36,7 +36,7 @@ const Signup = () => {
             <Bus className="h-6 w-6 text-white" />
           </div>
           <div className="text-center">
-            <h1 className="text-xl font-bold text-foreground">CampusTransit</h1>
+            <h1 className="text-xl font-bold text-foreground">Matrusri Bus Tracking</h1>
             <p className="text-sm text-muted-foreground">Real-time bus tracking</p>
           </div>
         </div>
@@ -45,7 +45,7 @@ const Signup = () => {
           <CardHeader className="space-y-1">
             <CardTitle className="text-2xl text-center">Create account</CardTitle>
             <CardDescription className="text-center">
-              Join CampusTransit to track buses and get notifications
+              Join Matrusri Bus Tracking to track buses and get notifications
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
