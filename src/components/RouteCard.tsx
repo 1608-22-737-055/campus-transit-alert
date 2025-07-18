@@ -75,10 +75,12 @@ export function RouteCard({
         position = 0;
     }
     
-    return (position / (totalStops - 1)) * 100; // Convert to percentage
+    return { position, percentage: (position / (totalStops - 1)) * 100 };
   };
 
-  const busPositionPercent = getBusPosition();
+  const busPosition = getBusPosition();
+  const busPositionPercent = busPosition.percentage;
+  const currentArea = stops[busPosition.position] || stops[0];
   return (
     <Card className="p-6 hover:shadow-medium transition-all duration-300 animate-fade-in">
       <div className="flex justify-between items-start mb-4">
@@ -95,7 +97,13 @@ export function RouteCard({
       <div className="space-y-3">
         {/* Route Visualization */}
         <div className="relative bg-muted/30 rounded-lg p-4 mb-4">
-          <div className="text-xs text-muted-foreground mb-2">Current Route Progress</div>
+          <div className="flex justify-between items-center mb-2">
+            <div className="text-xs text-muted-foreground">Current Route Progress</div>
+            <div className="flex items-center gap-1 text-xs text-primary font-medium">
+              <MapPin className="h-3 w-3" />
+              <span>Currently at: {currentArea}</span>
+            </div>
+          </div>
           {/* Route Line */}
           <div className="relative h-2 bg-muted rounded-full">
             <div 
